@@ -1,26 +1,101 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {ChangeEvent, useState} from 'react';
 import './App.css';
+import {SettingPage} from "./components/SettingPage";
+import {WorkPage} from "./components/WorkPage";
+
+export type displayValueType = 'Set Settings' | 'Error' | number
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    let [startValue, setStartValue] = useState<number>(0)
+    let [maxValue, setMaxValue] = useState<number>(4)
+
+
+    const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
+        if (maxValue === startValue) {
+            setDisabledSet(true)
+        } else {
+            setMaxValue(Number(e.currentTarget.value))
+            setDisplayValue('Set Settings')
+            setDisabledInc(true)
+            setDisabledReset(true)
+            setDisabledSet(false)
+            setRedStyle(false)
+        }
+    }
+
+    const changeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
+        if (Number(e.currentTarget.value) >= 0) {
+            setStartValue(Number(e.currentTarget.value))
+            setDisplayValue('Set Settings')
+            setDisabledInc(true)
+            setDisabledReset(true)
+            setDisabledSet(false)
+            setRedStyle(false)
+        } else if (Number(e.currentTarget.value) < 0) {
+            setDisplayValue('Error')
+            setDisabledSet(true)
+        }
+    }
+
+    let [displayValue, setDisplayValue] = useState<displayValueType>(startValue)
+
+    let [disabledInc, setDisabledInc] = useState(false)
+    let [disabledReset, setDisabledReset] = useState(false)
+    let [disabledSet, setDisabledSet] = useState(true)
+
+    const resetDisplayValue = () => {
+        setDisplayValue(startValue)
+        setDisabledInc(false)
+    }
+
+    let [redStyle, setRedStyle] = useState(false)
+
+    const displayValuePlus = () => {
+        if (displayValue === maxValue) {
+            setDisabledInc(true)
+            setRedStyle(true)
+        } else if (displayValue !== 'Set Settings' || 'Error') {
+            setDisplayValue(Number(displayValue) + 1)
+        } else {
+            setDisplayValue(displayValue)
+        }
+        // Если displayValue: number то тогда setDisplayValue(displayValue +1)
+    }
+
+    const updateSettings = () => {
+        if (startValue < 0) {
+            setDisplayValue('Error')
+        } else if (startValue >= maxValue) {
+            setDisplayValue('Error')
+        } else {
+            setDisplayValue(startValue)
+            setDisabledInc(false)
+            setDisabledReset(false)
+            setRedStyle(false)
+            setDisabledSet(true)
+        }
+    }
+
+    return (
+        <div className="App">
+            <SettingPage
+                maxValue={maxValue}
+                changeMaxValue={changeMaxValue}
+                startValue={startValue}
+                changeStartValue={changeStartValue}
+                updateSettings={updateSettings}
+                disabledSet={disabledSet}
+            />
+            <WorkPage displayValue={displayValue}
+                      resetDisplayValue={resetDisplayValue}
+                      displayValuePlus={displayValuePlus}
+                      maxValue={maxValue}
+                      disabledMode={disabledInc}
+                      redStyle={redStyle}
+                      disabledReset={disabledReset}
+            />
+        </div>
+    )
 }
 
 export default App;
