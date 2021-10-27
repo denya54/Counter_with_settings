@@ -14,7 +14,6 @@ type WorkPageProps = {
 }
 
 export const WorkPage = (props: WorkPageProps) => {
-
     return (
         <div>
             <Display displayValue={props.displayValue} maxValue={props.maxValue} redStyle={props.redStyle}/>

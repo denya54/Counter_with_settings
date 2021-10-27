@@ -12,7 +12,6 @@ type SettingPageProps = {
 }
 
 export const SettingPage = (props: SettingPageProps) => {
-
     return (
         <div>
         <Input maxValue={props.maxValue}

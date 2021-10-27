@@ -12,30 +12,21 @@ function App() {
 
 
     const changeMaxValue = (e: ChangeEvent<HTMLInputElement>) => {
-        if (maxValue === startValue) {
-            setDisabledSet(true)
-        } else {
             setMaxValue(Number(e.currentTarget.value))
             setDisplayValue('Set Settings')
             setDisabledInc(true)
             setDisabledReset(true)
             setDisabledSet(false)
             setRedStyle(false)
-        }
     }
 
     const changeStartValue = (e: ChangeEvent<HTMLInputElement>) => {
-        // if (Number(e.currentTarget.value) >= 0) {
             setStartValue(Number(e.currentTarget.value))
             setDisplayValue('Set Settings')
             setDisabledInc(true)
             setDisabledReset(true)
             setDisabledSet(false)
             setRedStyle(false)
-        // } else if (Number(e.currentTarget.value) < 0) {
-        //     setDisplayValue('Error')
-        //     setDisabledSet(true)
-        // }
     }
 
     let [displayValue, setDisplayValue] = useState<displayValueType>(startValue)
@@ -102,18 +93,6 @@ function App() {
             setDisabledReset(false)
             setRedStyle(false)
             setDisabledSet(true)
-
-
-            // localStorage.setItem('maxValue', JSON.stringify(maxValue))
-            // let localMaxValue = localStorage.getItem('maxValue')
-            // if (localMaxValue) {
-            //     setMaxValue(JSON.parse(localMaxValue))
-            // }
-            // localStorage.setItem('startValue', JSON.stringify(startValue))
-            // let localStartValue = localStorage.getItem('startValue')
-            // if (localStartValue) {
-            //     setStartValue(JSON.parse(localStartValue))
-            // }
         }
     }
 
