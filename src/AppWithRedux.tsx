@@ -6,6 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootState} from "./store/store";
 import {changeStartValueAC} from "./store/startValue-reducer";
 import {changeMaxValueAC} from "./store/maxValue-reducer";
+import Container from '@material-ui/core/Container';
+import Paper from '@material-ui/core/Paper';
 
 export type displayValueType = 'Set Settings' | 'Error' | number
 
@@ -102,25 +104,69 @@ function AppWithRedux() {
     }
 
     return (
+        // <div className="App">
+//
+//     <Container fixed>
+//         <Grid container style={{padding: '20px'}}>
+//             <AddItemForm addItem={addTodolist}/>
+//         </Grid>
+//         <Grid container spacing={3}>
+//             {
+//                 todolists.map(tl => {
+//                     let allTodolistTasks = tasks[tl.id];
+//
+//                     return <Grid item key={tl.id}>
+//                         <Paper style={{padding: '10px'}}>
+//                             <Todolist
+//                                 id={tl.id}
+//                                 title={tl.title}
+//                                 tasks={allTodolistTasks}
+//                                 removeTask={removeTask}
+//                                 changeFilter={changeFilter}
+//                                 addTask={addTask}
+//                                 changeTaskStatus={changeStatus}
+//                                 filter={tl.filter}
+//                                 removeTodolist={removeTodolist}
+//                                 changeTaskTitle={changeTaskTitle}
+//                                 changeTodolistTitle={changeTodolistTitle}
+//                             />
+//                         </Paper>
+//                     </Grid>
+//                 })
+//             }
+//         </Grid>
+//     </Container>
+// </div>
+
         <div className="App">
-            <SettingPage
-                maxValue={maxValue}
-                changeMaxValue={changeMaxValue}
-                startValue={startValue}
-                changeStartValue={changeStartValue}
-                updateSettings={updateSettings}
-                disabledSet={disabledSet}
-            />
-            <WorkPage displayValue={displayValue}
-                      resetDisplayValue={resetDisplayValue}
-                      displayValuePlus={displayValuePlus}
-                      maxValue={maxValue}
-                      disabledMode={disabledInc}
-                      redStyle={redStyle}
-                      disabledReset={disabledReset}
-            />
+            <Paper style={{padding: '10px'}}>
+            <Container fixed>
+
+                    <SettingPage
+                        maxValue={maxValue}
+                        changeMaxValue={changeMaxValue}
+                        startValue={startValue}
+                        changeStartValue={changeStartValue}
+                        updateSettings={updateSettings}
+                        disabledSet={disabledSet}
+                    />
+
+                    <WorkPage displayValue={displayValue}
+                              resetDisplayValue={resetDisplayValue}
+                              displayValuePlus={displayValuePlus}
+                              maxValue={maxValue}
+                              disabledMode={disabledInc}
+                              redStyle={redStyle}
+                              disabledReset={disabledReset}
+                    />
+
+            </Container>
+            </Paper>
         </div>
     )
 }
+
+
+
 
 export default AppWithRedux;

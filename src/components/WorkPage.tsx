@@ -1,12 +1,13 @@
 import React from 'react';
-import {Button} from "./Button";
+import {ButtonComponent} from "./ButtonComponent";
 import {displayValueType} from "../App";
 import {Display} from "./Display";
+import classes from './WorkPage.module.css'
 
 type WorkPageProps = {
     displayValue: displayValueType
-    resetDisplayValue: ()=> void
-    displayValuePlus: ()=> void
+    resetDisplayValue: () => void
+    displayValuePlus: () => void
     maxValue: number
     disabledMode: boolean
     redStyle: boolean
@@ -15,10 +16,10 @@ type WorkPageProps = {
 
 export const WorkPage = (props: WorkPageProps) => {
     return (
-        <div>
+        <div className={classes.workPage}>
             <Display displayValue={props.displayValue} maxValue={props.maxValue} redStyle={props.redStyle}/>
-        <Button title={'inc'} callBack={props.displayValuePlus} disabledButton={props.disabledMode}/>
-        <Button title={'reset'} callBack={props.resetDisplayValue} disabledButton={props.disabledReset}/>
-            </div>
+            <ButtonComponent title={'inc'} callBack={props.displayValuePlus} disabledButton={props.disabledMode}/>
+            <ButtonComponent title={'reset'} callBack={props.resetDisplayValue} disabledButton={props.disabledReset}/>
+        </div>
     )
 }

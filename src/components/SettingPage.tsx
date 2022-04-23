@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from 'react';
-import {Input} from "./Input";
-import {Button} from "./Button";
+import {InputComponent} from "./InputComponent";
+import {ButtonComponent} from "./ButtonComponent";
+import classes from './SettingPage.module.css'
 
 type SettingPageProps = {
     maxValue: number
@@ -14,11 +15,14 @@ type SettingPageProps = {
 export const SettingPage = (props: SettingPageProps) => {
     return (
         <div>
-        <Input maxValue={props.maxValue}
-               startValue={props.startValue}
-               changeMaxValue={props.changeMaxValue}
-               changeStartValue={props.changeStartValue}/>
-        <Button title={'SET'} callBack={props.updateSettings} disabledButton={props.disabledSet}/>
+        <InputComponent maxValue={props.maxValue}
+                        startValue={props.startValue}
+                        changeMaxValue={props.changeMaxValue}
+                        changeStartValue={props.changeStartValue}/>
+            <div className={classes.button}>
+                <ButtonComponent title={'SET'} callBack={props.updateSettings} disabledButton={props.disabledSet}/>
+            </div>
+
         </div>
     )
 }

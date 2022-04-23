@@ -1,4 +1,19 @@
 .maxValueDisplay {
     color: red;
-    font-size: 150%;
+    font-size: 32px;
+    width: 200px;
+    height: 40px;
+    border: 1px solid gray;
+    margin: 50px auto 20px;
+    display: block;
+}
+
+.normal {
+    font-size: 30px;
+    width: 200px;
+    height: 40px;
+    border: 1px solid gray;
+    margin: 50px auto 20px;
+    display: block;
+
 }

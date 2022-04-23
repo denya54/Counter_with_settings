@@ -10,7 +10,7 @@ type DisplayProps = {
 
 export const Display = (props: DisplayProps) => {
 
-    const redDisplay = props.redStyle ? classes.maxValueDisplay : ''
+    const redDisplay = props.redStyle ? classes.maxValueDisplay : classes.normal
     return(
         <div className={redDisplay}>
             {props.displayValue}
